@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: service-b-deployment
+  labels:
+    app: service-b
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-b
+  template:
+    metadata:
+      labels:
+        app: service-b
+    spec:
+      containers:
+      - image: eu.gcr.io/kubernetes-222419/service-b
+        imagePullPolicy: Always
+        name: service-b
+        ports:
+          - containerPort: 8000
+            protocol: TCP
